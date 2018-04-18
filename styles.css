@@ -1,0 +1,30 @@
+div#gameBoard {
+    background: #CCC;
+    border: #999 1px solid;
+    width: 535px;
+    height: 525px;
+    padding: 24px;
+    margin: 0px auto;
+}
+
+div#gameBoard>div {
+    /* background: url(tile_bg.jpg) no-repeat; */
+    border: #000 1px solid;
+    width: 71px;
+    height: 71px;
+    float: left;
+    margin: 10px;
+    padding: 20px;
+    font-size: 64px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.star-list {
+    list-style: none;
+    display: flex;
+}
+
+.star-list li {
+    margin-right: 0.5rem;
+}
