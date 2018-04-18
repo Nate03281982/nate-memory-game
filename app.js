@@ -64,3 +64,21 @@ function newgameBoard() {
     }
     document.getElementById('gameBoard').innerHTML = output;
 }
+
+//trackmoves 
+function trackMoves() {
+    totalMoves++;
+    console.log(totalMoves)
+    document.getElementById("moveCounter").innerText = totalMoves.toString();
+}
+
+//cardflip
+
+function cardFlip(tile, val) {
+    if (totalMoves === 0) {
+        timerVar = setInterval(countTimer, 1000);
+    }
+
+    trackMoves();
+
+    
