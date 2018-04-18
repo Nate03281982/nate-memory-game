@@ -25,3 +25,21 @@ function shuffle(array) {
 
     return array;
 }
+
+//reset
+function reset() {
+    clearInterval(timerVar);
+    totalSeconds = 0;
+    document.getElementById("timer").innerHTML = "0";
+
+    totalMoves = 0;
+    document.getElementById("moveCounter").innerText = "0";
+
+    document.querySelectorAll('.star-list li').forEach(function(star, index){
+        star.innerText = `*${index + 1}`
+        // console.log(star);
+    })
+
+
+    newgameBoard();
+}
