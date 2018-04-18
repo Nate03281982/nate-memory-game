@@ -35,9 +35,11 @@ function reset() {
     totalMoves = 0;
     document.getElementById("moveCounter").innerText = "0";
 
+    //for (var i= 0; i < star-list.length; i++){
+        //stars-list[i].style.opacity = 1;
     document.querySelectorAll('.star-list li').forEach(function(star, index){
         star.innerText = `*${index + 1}`
-        // console.log(star);
+    // console.log(star);
     })
 
 
@@ -94,19 +96,19 @@ function cardFlip(tile, val) {
 
 //rest
 
- if (tile.innerHTML == "" && arrayValue.length < 2) {
+ if (tile.innerHTML == "" && arrayValues.length < 2) {
         tile.style.background = '#FFF';
         tile.innerHTML = val;
-        if (arrayValue.length == 0) {
-            arrayValue.push(val);
+        if (arrayValues.length == 0) {
+            arrayValues.push(val);
             cardIds.push(tile.id);
-        } else if (arrayValue.length == 1) {
-            arrayValue.push(val);
+        } else if (arrayValues.length == 1) {
+            arrayValues.push(val);
             cardIds.push(tile.id);
-            if (arrayValue[0] == arrayValue[1]) {
+            if (arrayValues[0] == arrayValues[1]) {
                 cardsClicked += 2;
                 // Clear both arrays
-                arrayValue = [];
+                arrayValues = [];
                 cardIds = [];
                 // Check to see if the whole board is cleared
                 if (cardsClicked == gameArray.length) {
@@ -115,16 +117,16 @@ function cardFlip(tile, val) {
                     newgameBoard();
                 }
             } else {
-                function flipOver() {
+                function flipOver(){
                     // Flip the 2 tiles back over
                     var tile_1 = document.getElementById(cardIds[0]);
-                    var tile_2 = document.getElementById(carIds[1]);
+                    var tile_2 = document.getElementById(cardIds[1]);
                     tile_1.style.background = "#CCC";
                     tile_1.innerHTML = "";
-                    tile_2.style.background = '#CCC';
+                    tile_2.style.background = "#CCC";
                     tile_2.innerHTML = "";
                     // Clear both arrays
-                    arrayValue = [];
+                    arrayValues = [];
                     cardIds = [];
                 }
                 setTimeout(flipOver, 700);
