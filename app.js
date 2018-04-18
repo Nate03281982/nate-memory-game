@@ -1,7 +1,7 @@
 // JavaScript source code variables
 var gameArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
 var arrayValues = [];
-var carIds = [];
+var cardIds = [];
 var cardsClicked = 0;
 var totalMoves = 0;
 var totalSeconds = 0;
@@ -92,3 +92,43 @@ function cardFlip(tile, val) {
         document.getElementById("first-star").style.opacity = 0;
     }
 
+//rest
+
+ if (tile.innerHTML == "" && arrayValue.length < 2) {
+        tile.style.background = '#FFF';
+        tile.innerHTML = val;
+        if (arrayValue.length == 0) {
+            arrayValue.push(val);
+            cardIds.push(tile.id);
+        } else if (arrayValue.length == 1) {
+            arrayValue.push(val);
+            cardIds.push(tile.id);
+            if (arrayValue[0] == arrayValue[1]) {
+                cardsClicked += 2;
+                // Clear both arrays
+                arrayValue = [];
+                cardIds = [];
+                // Check to see if the whole board is cleared
+                if (cardsClicked == gameArray.length) {
+                    alert("Board cleared... generating new board");
+                    document.getElementById('gameBoard').innerHTML = "";
+                    newgameBoard();
+                }
+            } else {
+                function flipOver() {
+                    // Flip the 2 tiles back over
+                    var tile_1 = document.getElementById(cardIds[0]);
+                    var tile_2 = document.getElementById(carIds[1]);
+                    tile_1.style.background = "#CCC";
+                    tile_1.innerHTML = "";
+                    tile_2.style.background = '#CCC';
+                    tile_2.innerHTML = "";
+                    // Clear both arrays
+                    arrayValue = [];
+                    cardIds = [];
+                }
+                setTimeout(flipOver, 700);
+            }
+        }
+    }
+}
