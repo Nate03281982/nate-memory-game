@@ -81,4 +81,14 @@ function cardFlip(tile, val) {
 
     trackMoves();
 
-    
+    //stars
+    if (totalMoves === 26) {
+        document.getElementById("first-star").style.opacity = 0;
+    }
+    if (totalMoves === 36) {
+        document.getElementById("first-star").style.opacity = 0;
+    }
+    if (totalMoves === 46) {
+        document.getElementById("first-star").style.opacity = 0;
+    }
+
