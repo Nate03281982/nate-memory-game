@@ -35,6 +35,9 @@ function reset() {
     totalMoves = 0;
     document.getElementById("moveCounter").innerText = "0";
 
+    document.getElementById("first-star").style.opacity = 1;
+    document.getElementById("second-star").style.opacity = 1;
+    document.getElementById("third-star").style.opacity = 1;
     //for (var i= 0; i < star-list.length; i++){
         //stars-list[i].style.opacity = 1;
     document.querySelectorAll('.star-list li').forEach(function(star, index){
@@ -88,10 +91,10 @@ function cardFlip(tile, val) {
         document.getElementById("first-star").style.opacity = 0;
     }
     if (totalMoves === 36) {
-        document.getElementById("first-star").style.opacity = 0;
+        document.getElementById("second-star").style.opacity = 0;
     }
     if (totalMoves === 46) {
-        document.getElementById("first-star").style.opacity = 0;
+        document.getElementById("third-star").style.opacity = 0;
     }
 
 //rest
