@@ -53,3 +53,14 @@ function countTimer() {
 
     document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
 }
+
+//newgameboard
+function newgameBoard() {
+    cardsClicked = 0;
+    var output = '';
+    shuffle(gameArray);
+    for (var i = 0; i < gameArray.length; i++) {
+        output += '<div id="tile_' + i + '" onclick="cardFlip(this,\'' + gameArray[i] + '\')"></div>';
+    }
+    document.getElementById('gameBoard').innerHTML = output;
+}
