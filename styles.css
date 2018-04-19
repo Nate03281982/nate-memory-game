@@ -8,13 +8,12 @@ div#gameBoard {
 }
 
 div#gameBoard>div {
-    /* background: url(tile_bg.jpg) no-repeat; */
     border: #000 1px solid;
     width: 71px;
     height: 71px;
     float: left;
     margin: 10px;
-    padding: 20px;
+    padding: 20px;<!DOCTYPE html>
     font-size: 64px;
     cursor: pointer;
     text-align: center;
@@ -25,6 +24,7 @@ div#gameBoard>div {
     display: flex;
 }
 
-.star-list li {
-    margin-right: 0.5rem;
+#reset {
+    margin-left: 900px;
+    margin-bottom: 17px;
 }

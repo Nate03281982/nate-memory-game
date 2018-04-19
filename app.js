@@ -39,10 +39,9 @@ function reset() {
     document.getElementById("second-star").style.opacity = 1;
     document.getElementById("third-star").style.opacity = 1;
     //for (var i= 0; i < star-list.length; i++){
-        //stars-list[i].style.opacity = 1;
-    document.querySelectorAll('.star-list li').forEach(function(star, index){
+    //stars-list[i].style.opacity = 1;
+    document.querySelectorAll('.star-list li').forEach(function (star, index) {
         star.innerText = `*${index + 1}`
-    // console.log(star);
     })
 
 
@@ -97,9 +96,9 @@ function cardFlip(tile, val) {
         document.getElementById("third-star").style.opacity = 0;
     }
 
-//rest
+    //rest
 
- if (tile.innerHTML == "" && arrayValues.length < 2) {
+    if (tile.innerHTML == "" && arrayValues.length < 2) {
         tile.style.background = '#FFF';
         tile.innerHTML = val;
         if (arrayValues.length == 0) {
@@ -120,7 +119,7 @@ function cardFlip(tile, val) {
                     newgameBoard();
                 }
             } else {
-                function flipOver(){
+                function flipOver() {
                     // Flip the 2 tiles back over
                     var tile_1 = document.getElementById(cardIds[0]);
                     var tile_2 = document.getElementById(cardIds[1]);
