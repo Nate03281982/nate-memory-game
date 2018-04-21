@@ -1,3 +1,9 @@
+.page-container {
+    width: 585px;
+    margin: 0 auto;
+}
+
+
 div#gameBoard {
     background: #CCC;
     border: #999 1px solid;
@@ -13,18 +19,25 @@ div#gameBoard>div {
     height: 71px;
     float: left;
     margin: 10px;
-    padding: 20px;<!DOCTYPE html>
+    padding: 20px;
     font-size: 64px;
     cursor: pointer;
     text-align: center;
 }
 
 .star-list {
+    margin: 0;
+    padding: 0;
     list-style: none;
     display: flex;
 }
 
 #reset {
-    margin-left: 900px;
+    /* margin-left: 90%; */
     margin-bottom: 17px;
+}
+
+#timer {
+    font-size: 3rem;
+    text-align: center;
 }

@@ -5,6 +5,8 @@ var cardIds = [];
 var cardsClicked = 0;
 var totalMoves = 0;
 var totalSeconds = 0;
+var totalStars = 3;
+var totalTime = null;
 var timerVar;
 
 newgameBoard();
@@ -27,6 +29,7 @@ function shuffle(array) {
 }
 
 //reset
+
 function reset() {
     clearInterval(timerVar);
     totalSeconds = 0;
@@ -35,13 +38,13 @@ function reset() {
     totalMoves = 0;
     document.getElementById("moveCounter").innerText = "0";
 
-    document.getElementById("first-star").style.opacity = 1;
-    document.getElementById("second-star").style.opacity = 1;
-    document.getElementById("third-star").style.opacity = 1;
+    // document.getElementById("first-star").style.opacity = 1;
+    // document.getElementById("second-star").style.opacity = 1;
+    // document.getElementById("third-star").style.opacity = 1;
     //for (var i= 0; i < star-list.length; i++){
     //stars-list[i].style.opacity = 1;
-    document.querySelectorAll('.star-list li').forEach(function (star, index) {
-        star.innerText = `*${index + 1}`
+    document.querySelectorAll('.star-list li').forEach(function (star) {
+        star.style.opacity = 1;
     })
 
 
@@ -55,7 +58,12 @@ function countTimer() {
     var minute = Math.floor((totalSeconds - hour * 3600) / 60);
     var seconds = totalSeconds - (hour * 3600 + minute * 60);
 
-    document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+
+    totalTime = minute + ":" + seconds;
+    document.getElementById("timer").innerHTML = minute + ":" + seconds;
 }
 
 //newgameboard
@@ -70,7 +78,11 @@ function newgameBoard() {
 }
 
 //trackmoves 
-function trackMoves() {
+function trackMoves(tile) {
+    if (tile.innerHTML !== ''){
+        return;
+    }
+
     totalMoves++;
     console.log(totalMoves)
     document.getElementById("moveCounter").innerText = totalMoves.toString();
@@ -83,17 +95,20 @@ function cardFlip(tile, val) {
         timerVar = setInterval(countTimer, 1000);
     }
 
-    trackMoves();
+    trackMoves(tile);
 
     //stars
-    if (totalMoves === 26) {
+    if (totalMoves === 2) {
         document.getElementById("first-star").style.opacity = 0;
+        totalStars--;
     }
-    if (totalMoves === 36) {
+    if (totalMoves === 3) {
         document.getElementById("second-star").style.opacity = 0;
+        totalStars--;
     }
-    if (totalMoves === 46) {
+    if (totalMoves === 4) {
         document.getElementById("third-star").style.opacity = 0;
+        totalStars--;
     }
 
     //rest
@@ -114,9 +129,10 @@ function cardFlip(tile, val) {
                 cardIds = [];
                 // Check to see if the whole board is cleared
                 if (cardsClicked == gameArray.length) {
-                    alert("Board cleared... generating new board");
-                    document.getElementById('gameBoard').innerHTML = "";
-                    newgameBoard();
+                    alert(`Game Finished!! Total time: ${totalTime}, Star Rating: ${totalStars}, Press Okay to play again`);
+                    // document.getElementById('gameBoard').innerHTML = "";
+                    // newgameBoard();
+                    reset();
                 }
             } else {
                 function flipOver() {

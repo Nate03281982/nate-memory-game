@@ -2,23 +2,31 @@
 <html>
 
 <head>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+	    crossorigin="anonymous">
 	<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-	<div id="timer"></div>
-	<div id="stop_timer" onclick="clearInterval(timerVar)">Stop time</div>
+	<div class="page-container">
+		<div id="timer">0:00</div>
+		<!-- <div id="stop_timer" onclick="clearInterval(timerVar)">Stop time</div> -->
 
-	<div id="moveCounter">0</div>
+		<div id="moveCounter-container">Total Moves: <span id="moveCounter">0</span></div>
 
-	<ul class="star-list">
-		<li id="first-star">*1</li>
-		<li id="second-star">*2</li>
-		<li id="third-star">*3</li>
-	</ul>
+		<div class="bottom-row" style="display: flex; justify-content: space-between">
+			<ul class="star-list">
+				<li id="first-star"><i class="fas fa-star"></i></li>
+				<li id="second-star"><i class="fas fa-star"></i></li>
+				<li id="third-star"><i class="fas fa-star"></i></li>
+			</ul>
+	
+			<button id="reset" onclick="reset()">RESET</button>
+		</div>
+		<div id="gameBoard"></div>
+	</div>
 
-	<button id="reset" onclick="reset()">RESET</button>
-	<div id="gameBoard"></div>
+	<!-- script tags -->
 	<script src="app.js"></script>
 </body>
 
