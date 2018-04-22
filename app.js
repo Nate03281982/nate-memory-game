@@ -98,15 +98,15 @@ function cardFlip(tile, val) {
     trackMoves(tile);
 
     //stars
-    if (totalMoves === 2) {
+    if (totalMoves === 26) {
         document.getElementById("first-star").style.opacity = 0;
         totalStars--;
     }
-    if (totalMoves === 3) {
+    if (totalMoves === 36) {
         document.getElementById("second-star").style.opacity = 0;
         totalStars--;
     }
-    if (totalMoves === 4) {
+    if (totalMoves === 46) {
         document.getElementById("third-star").style.opacity = 0;
         totalStars--;
     }
