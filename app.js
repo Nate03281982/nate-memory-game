@@ -34,7 +34,7 @@ function reset() {
     clearInterval(timerVar);
     totalSeconds = 0;
     document.getElementById("timer").innerHTML = "0";
-
+    arrayValues = [];
     totalMoves = 0;
     document.getElementById("moveCounter").innerText = "0";
 
@@ -106,11 +106,7 @@ function cardFlip(tile, val) {
         document.getElementById("second-star").style.opacity = 0;
         totalStars--;
     }
-    if (totalMoves === 46) {
-        document.getElementById("third-star").style.opacity = 0;
-        totalStars--;
-    }
-
+    
     //rest
 
     if (tile.innerHTML == "" && arrayValues.length < 2) {
