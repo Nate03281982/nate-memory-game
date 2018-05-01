@@ -9,6 +9,8 @@ var totalStars = 3;
 var totalTime = null;
 var timerVar;
 
+var twoMovesAsOne = 0;
+
 newgameBoard();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -36,6 +38,7 @@ function reset() {
     document.getElementById("timer").innerHTML = "0";
     arrayValues = [];
     totalMoves = 0;
+    twoMovesAsOne = 0;
     document.getElementById("moveCounter").innerText = "0";
 
     // document.getElementById("first-star").style.opacity = 1;
@@ -79,24 +82,30 @@ function newgameBoard() {
 
 //trackmoves 
 function trackMoves(tile) {
-    if (tile.innerHTML !== ''){
+    
+    // if clicked on already clicked, return
+    if(tile.innerHTML !== ''){
         return;
     }
+    twoMovesAsOne++;
 
-    totalMoves++;
-    console.log(totalMoves)
+    if (twoMovesAsOne === 2) {
+        totalMoves++;
+        twoMovesAsOne = 0;
+    }
+    // console.log(totalMoves)
     document.getElementById("moveCounter").innerText = totalMoves.toString();
 }
 
 //cardflip
 
-function cardFlip(tile, val) {
-    if (totalMoves === 0) {
+function fireTimerOnce(){
+    if (totalMoves === 0 && twoMovesAsOne === 0) {
         timerVar = setInterval(countTimer, 1000);
     }
+}
 
-    trackMoves(tile);
-
+function decrementStars() {
     //stars
     if (totalMoves === 26) {
         document.getElementById("first-star").style.opacity = 0;
@@ -106,45 +115,84 @@ function cardFlip(tile, val) {
         document.getElementById("second-star").style.opacity = 0;
         totalStars--;
     }
+}
+
+
+// MASTER FUNCTION 
+function cardFlip(tile, val) {
+    console.log('tile: ', tile)
+    console.log('val: ', val)
+    fireTimerOnce();
+    trackMoves(tile);
+    decrementStars();
     
     //rest
 
-    if (tile.innerHTML == "" && arrayValues.length < 2) {
+
+    function flipOpenTile() {
         tile.style.background = '#FFF';
         tile.innerHTML = val;
+    }
+
+    function populateMemoryArrays() {
+        arrayValues.push(val);
+        cardIds.push(tile.id);
+    }
+    
+    var isTileOpen = tile.innerHTML == "" && arrayValues.length < 2;
+    
+    if (isTileOpen) {
+        flipOpenTile();
         if (arrayValues.length == 0) {
-            arrayValues.push(val);
-            cardIds.push(tile.id);
+            populateMemoryArrays()
         } else if (arrayValues.length == 1) {
-            arrayValues.push(val);
-            cardIds.push(tile.id);
-            if (arrayValues[0] == arrayValues[1]) {
-                cardsClicked += 2;
+            populateMemoryArrays()
+            if (doCardsMatch()) {
+
+                // track cards used
+                cardsClicked += 2; 
+
                 // Clear both arrays
                 arrayValues = [];
                 cardIds = [];
-                // Check to see if the whole board is cleared
-                if (cardsClicked == gameArray.length) {
-                    alert(`Game Finished!! Total time: ${totalTime}, Star Rating: ${totalStars}, Press Okay to play again`);
-                    // document.getElementById('gameBoard').innerHTML = "";
-                    // newgameBoard();
-                    reset();
-                }
+
+                checkForGameOver();
+               
             } else {
-                function flipOver() {
-                    // Flip the 2 tiles back over
-                    var tile_1 = document.getElementById(cardIds[0]);
-                    var tile_2 = document.getElementById(cardIds[1]);
-                    tile_1.style.background = "#CCC";
-                    tile_1.innerHTML = "";
-                    tile_2.style.background = "#CCC";
-                    tile_2.innerHTML = "";
-                    // Clear both arrays
-                    arrayValues = [];
-                    cardIds = [];
-                }
-                setTimeout(flipOver, 700);
+               flipOverUnmatched();
             }
         }
     }
+}
+
+//================= Central Card flip logic ==================== 
+
+function doCardsMatch(){
+    return arrayValues[0] == arrayValues[1]
+}
+
+function checkForGameOver() {
+     // Check to see if the whole board is cleared
+     if (cardsClicked == gameArray.length) {
+        alert(`Game Finished!! Total time: ${totalTime}, Star Rating: ${totalStars}, Press Okay to play again`);
+        // document.getElementById('gameBoard').innerHTML = "";
+        // newgameBoard();
+        reset();
+    }
+}
+
+function flipOverUnmatched(){
+    function flipOver() {
+        // Flip the 2 tiles back over
+        var tile_1 = document.getElementById(cardIds[0]);
+        var tile_2 = document.getElementById(cardIds[1]);
+        tile_1.style.background = "#CCC";
+        tile_1.innerHTML = "";
+        tile_2.style.background = "#CCC";
+        tile_2.innerHTML = "";
+        // Clear both arrays
+        arrayValues = [];
+        cardIds = [];
+    }
+    setTimeout(flipOver, 200);
 }
