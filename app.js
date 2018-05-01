@@ -120,15 +120,12 @@ function decrementStars() {
 
 // MASTER FUNCTION 
 function cardFlip(tile, val) {
-    console.log('tile: ', tile)
-    console.log('val: ', val)
+    // Pre-flip actions and checks
     fireTimerOnce();
     trackMoves(tile);
     decrementStars();
     
-    //rest
-
-
+    // helper functions and conditionals
     function flipOpenTile() {
         tile.style.background = '#FFF';
         tile.innerHTML = val;
@@ -140,7 +137,9 @@ function cardFlip(tile, val) {
     }
     
     var isTileOpen = tile.innerHTML == "" && arrayValues.length < 2;
+    var doCardsMatch = arrayValues[0] == arrayValues[1];
     
+    // where the flipping logic starts
     if (isTileOpen) {
         flipOpenTile();
         if (arrayValues.length == 0) {
@@ -167,9 +166,7 @@ function cardFlip(tile, val) {
 
 //================= Central Card flip logic ==================== 
 
-function doCardsMatch(){
-    return arrayValues[0] == arrayValues[1]
-}
+
 
 function checkForGameOver() {
      // Check to see if the whole board is cleared
