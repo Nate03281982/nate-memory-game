@@ -146,7 +146,7 @@ function cardFlip(tile, val) {
             populateMemoryArrays()
         } else if (arrayValues.length == 1) {
             populateMemoryArrays()
-            if (doCardsMatch()) {
+            if (doCardsMatch) {
 
                 // track cards used
                 cardsClicked += 2; 
