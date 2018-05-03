@@ -9,7 +9,7 @@ var totalStars = 3;
 var totalTime = null;
 var timerVar;
 
-var twoMovesAsOne = 0;
+var twoClicksCounter = 0;
 
 newgameBoard();
 
@@ -38,7 +38,7 @@ function reset() {
     document.getElementById("timer").innerHTML = "0";
     arrayValues = [];
     totalMoves = 0;
-    twoMovesAsOne = 0;
+    twoClicksCounter = 0;
     document.getElementById("moveCounter").innerText = "0";
 
     // document.getElementById("first-star").style.opacity = 1;
@@ -87,11 +87,11 @@ function trackMoves(tile) {
     if(tile.innerHTML !== ''){
         return;
     }
-    twoMovesAsOne++;
+    twoClicksCounter++;
 
-    if (twoMovesAsOne === 2) {
+    if (twoClicksCounter === 2) {
         totalMoves++;
-        twoMovesAsOne = 0;
+        twoClicksCounter = 0;
     }
     // console.log(totalMoves)
     document.getElementById("moveCounter").innerText = totalMoves.toString();
@@ -100,7 +100,7 @@ function trackMoves(tile) {
 //cardflip
 
 function fireTimerOnce(){
-    if (totalMoves === 0 && twoMovesAsOne === 0) {
+    if (totalMoves === 0 && twoClicksCounter === 0) {
         timerVar = setInterval(countTimer, 1000);
     }
 }

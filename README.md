@@ -7,7 +7,7 @@ load https://github.com/Nate03281982/nate-memory-game.git
 Turn over two tiles until you have a match.  You want to find all the matches as soon as possible.  There is a timer that begins on your first click.
 You can win stars for finishing the game is the lowest possible moves.
 
-How I build the game:
+How I built the game:
 -I used HTML and CSS to style the game
 -I used vanilla JavaScript to create the card flipping logic
 -I created a deck (array) of cards that is shuffled every time you start the game
